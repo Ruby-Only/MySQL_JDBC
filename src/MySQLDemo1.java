@@ -2,8 +2,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.UUID;
 
 public class MySQLDemo1 {
@@ -15,7 +13,7 @@ public class MySQLDemo1 {
 	//数据库用户名
 	private static final String USER = "root";
     //数据库密码
-	private static final String PASSWORD = "root123";
+	private static final String PASSWORD = "liuwenlong";
 
 	private static Connection getConnection() throws ClassNotFoundException,
 			SQLException {
@@ -51,13 +49,14 @@ public class MySQLDemo1 {
 			String insertId = UUID.randomUUID().toString();
 			System.out.println("insertId : " + insertId);
 			pstm.setString(1, insertId);
-			pstm.setString(2, "题目内容");
+			pstm.setString(2, "题目内容111111");
 			pstm.setString(3, "答案");
 			pstm.setString(4, "1");
 			long current_time = System.currentTimeMillis();
-//			 java.sql.Date date = new java.sql.Date(current_time);
-//			 pstm.setDate(5, date);
-			pstm.setTimestamp(5, new Timestamp(current_time));
+			 java.sql.Date date = new java.sql.Date(current_time);
+			 pstm.setDate(5, date);
+//			pstm.setTimestamp(5, new Timestamp(current_time));
+			 
 			pstm.executeUpdate();
 
 			String insertOption_sql = "INSERT INTO `t_question_option` (`OPTION_CONTENT`,`OPTION`,`QUESTION_ID`) VALUES (?, ?, ?);";
@@ -65,6 +64,7 @@ public class MySQLDemo1 {
 			pstm_option.setString(1, "选项内容");
 			pstm_option.setString(2, "A");
 			pstm_option.setString(3, insertId);
+			//新增,修改,删除数据都使用executeUpdate
 			pstm_option.executeUpdate();
 
 			// 手动提交事务

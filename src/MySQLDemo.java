@@ -13,7 +13,7 @@ public class MySQLDemo {
 
 	private static final String USER = "root";
 
-	private static final String PASSWORD = "root123";
+	private static final String PASSWORD = "liuwenlong";
 
 	public MySQLDemo() {
 
